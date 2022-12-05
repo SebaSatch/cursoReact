@@ -5,7 +5,7 @@ const ItemList = (props) => {
 
   return (
         <>
-            {props.map((i)=> (
+            {props.prod.map((i)=> (
                 <Item 
                     key={i.id}
                     nombre={i.name}
