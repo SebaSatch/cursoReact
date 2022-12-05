@@ -1,4 +1,4 @@
-import {Children, useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ItemList from '../ItemList/ItemList';
@@ -12,38 +12,21 @@ const ItemListContainer = () => {
             setProd(result.data.data) 
             setCargando(false)           
         }
-
         console.log(prod)
-
-        
+  
         useEffect(() => {
             traemeProdu()   
         },[])
     
-
   return (
     <>
-        {/* aca lo q hacemos es mapear nuestro array, y por cada objeta que esta en el array, nos devuelve el codigo que ponemos en su interior. En este caso, solo le pedimos que nos devuelva los values correspondientes a las key image, name, description y id*/}
         {
-        cargando ? <h1> cargando ... </h1> :
-        prod.map((i)=> (
-
-                <ItemList
-                    key={i.id}
-                    name={i.name} 
-                    id={i.id} 
-                    image={i.image} 
-                    description={i.description}>
-                </ItemList>
-            )
-        )}    
+        cargando ? 
+            <h1> cargando ... </h1> 
+        :
+            <ItemList prod={prod}> </ItemList>   
+        }    
     </>
-
-
-
-
-
   )
-
 }
 export default ItemListContainer
