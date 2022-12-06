@@ -1,5 +1,6 @@
 import React from 'react'
 import Item from '../Item/Item'
+import { useParams } from 'react-router-dom'
 
 const ItemList = (props) => {
 
@@ -17,6 +18,7 @@ const ItemList = (props) => {
                                
             }        
         </>                
+
     )
 }
 
