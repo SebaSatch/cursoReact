@@ -1,12 +1,11 @@
 import React from 'react'
 import Item from '../Item/Item'
-import { useParams } from 'react-router-dom'
 
-const ItemList = (props) => {
+const ItemList = ({prod}) => {
 
   return (
         <>
-            {props.prod.map((i)=> (
+            {prod.map((i)=> (
                 <Item 
                     key={i.id}
                     nombre={i.name}

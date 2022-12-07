@@ -5,6 +5,7 @@ import NavBar from './components/NavBar/NavBar';
 import ItemListContainer from './components/ItemListContainer/ItemListContainer';
 import Item from './components/Item/Item';
 import ItemList from './components/ItemList/ItemList';
+import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
 
 function App() {
 
@@ -14,8 +15,9 @@ function App() {
       <BrowserRouter>
       <NavBar></NavBar>
         <Routes>
+            
             <Route path= "/" element={<ItemListContainer/>}/>
-            <Route path= "/detail/:productId" element={<Item/>}/>
+            <Route path= "/detail/:productId" element={<ItemDetailContainer/>}/>
         </Routes>  
       </BrowserRouter>    
     </>
