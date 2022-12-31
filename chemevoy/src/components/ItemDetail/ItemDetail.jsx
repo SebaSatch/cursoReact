@@ -3,21 +3,33 @@ import ItemCount from '../ItemCount/ItemCount'
 
 const ItemDetail = ({finder}) => {
   return (
-    <div key= {finder.id} className="card mb-3">
-    <div className="row g-0">
-        <div className="col-md-4">
-            <img src={finder.image} className="img-fluid rounded-start" alt="..."/>
-        </div>
-        <div className="col-md-8">
-            <div className="card-body">
-                <h5 className="card-title">{finder.name}</h5>
-                <p className="card-text">{finder.description}</p>
-                <p className="card-text"><small className="text-muted">{finder.id}</small></p>
+
+    <>
+    {finder.map((i)=> (
+
+        <div key={i.id} className="card mb-3">
+            <div className="row g-0">
+                <div className="col-md-4">
+                    <img src={i.img} className="img-fluid rounded-start" alt="..."/>
+                </div>
+                <div className="col-md-8">
+                    <div className="card-body">
+                        <h5 className="card-title">{i.destino}</h5>
+                        <p className="card-text">{i.descripcion}</p>
+                        <p className="card-text"><small className="text-muted">{i.precio}</small></p>
+                    </div>
+                <ItemCount></ItemCount>
+                </div>
             </div>
-        <ItemCount></ItemCount>
         </div>
-    </div>
-</div>
+    
+      )) 
+                       
+    }        
+</>     
+
+
+
   )
 }
 

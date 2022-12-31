@@ -13,8 +13,8 @@ const Item = (props) => {
                     <div className="col-md-8">
                         <div className="card-body">
                             <h5 className="card-title">{props.nombre}</h5>
-                            <p className="card-text">{props.descripcion}</p>
-                            <p className="card-text"><small className="text-muted">{props.id}</small></p>
+                            <p className="card-text"> Dias: {props.dias}</p>
+                            <p className="card-text"><big className="text-muted"> ${props.precio}</big></p>
                             <Link to={`/detail/${props.id}`}>
                                 <button type="button" className="btn btn-primary">Detalle</button>
                             </Link>

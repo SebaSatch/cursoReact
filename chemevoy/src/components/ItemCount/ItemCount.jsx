@@ -15,7 +15,7 @@ const ItemCount = () => {
         setCuenta(cuenta - 1)}
     }
   return (
-    <div> ITEMCOUNT
+    <div> Personas
         <div> {cuenta}
             <button onClick={moreHandler} > + </button>
             <button onClick={lessHandler}> - </button>

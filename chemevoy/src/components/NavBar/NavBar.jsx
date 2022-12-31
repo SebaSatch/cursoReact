@@ -1,7 +1,8 @@
 import logo from "../../assets/logo2-svg.svg"
-import CartWidget from "../CartWidget/CartWidget"
+import CartContainer from "../CartContainer/CartContainer"
 import { Link } from "react-router-dom"
 import { NavLink } from "react-router-dom"
+
 
 
 const NavBar = () => {
@@ -21,7 +22,7 @@ const NavBar = () => {
                        <Link className="nav-link" to="/" href="#"> Todos los Id </Link>
                     </li>
                     <li className="nav-item">
-                         <NavLink className="nav-link" to="/categoria/:id" href="#"> Id menor o igual a 6 </NavLink>
+                         <NavLink className="nav-link" to="/categoria/:id" href="#"> Argentina </NavLink>
                     </li>
                     {/* <li className="nav-item">
                             <a className="nav-link" href="#">Quienes somos?</a>
@@ -30,7 +31,7 @@ const NavBar = () => {
                             <a className="nav-link" href="#">Contacto</a>
                     </li> */}
                     <li className="nav-item">
-                            <CartWidget></CartWidget>
+                            <CartContainer></CartContainer>
                     </li>
                     
 
