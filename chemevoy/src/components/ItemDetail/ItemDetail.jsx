@@ -1,7 +1,21 @@
 import React from 'react'
+import { useContext } from 'react'
+import { CartContext } from '../../context/CartContext'
 import ItemCount from '../ItemCount/ItemCount'
 
 const ItemDetail = ({finder}) => {
+    console.log(finder)
+
+    const {cartList, addToCart} = useContext(CartContext)
+
+    const onAdd = (cant) => {
+
+  
+        addToCart({...finder, cant})
+
+    }
+
+    console.log(cartList)
   return (
 
     <>
@@ -18,7 +32,11 @@ const ItemDetail = ({finder}) => {
                         <p className="card-text">{i.descripcion}</p>
                         <p className="card-text"><small className="text-muted">{i.precio}</small></p>
                     </div>
-                <ItemCount></ItemCount>
+                <ItemCount
+                    onAdd={onAdd}
+                    stock={11}
+                    initial={1}
+                ></ItemCount>
                 </div>
             </div>
         </div>

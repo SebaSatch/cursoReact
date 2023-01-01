@@ -1,5 +1,5 @@
 import logo from "../../assets/logo2-svg.svg"
-import CartContainer from "../CartContainer/CartContainer"
+import CartContainer from "../CartWidget/CartContainer"
 import { Link } from "react-router-dom"
 import { NavLink } from "react-router-dom"
 
