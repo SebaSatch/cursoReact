@@ -23,7 +23,7 @@ const RealCartContainer = () => {
                         </div>
                         <div className="col-md-8">
                             <div className="card-body">
-                                <h5 className="card-title">{iterador.destino}</h5>
+                                <h4 className="card-title">{iterador.destino}</h4>
                                 <p className="card-text">{iterador.descripcion}</p>
                                 <p className="card-text">
                                     <big className="text-muted">  
@@ -36,7 +36,7 @@ const RealCartContainer = () => {
                 </div>
                 ))
         }
-        <span> <big> PRECIO TOTAL = {precioTotal()} </big> </span>
+        <h2> PRECIO TOTAL = {precioTotal()} </h2>
     </>     
   )
 }
