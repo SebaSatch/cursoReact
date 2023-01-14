@@ -1,14 +1,12 @@
 import React from 'react'
 import cart from "../../assets/carticon.svg"
+import { Link } from 'react-router-dom'
 
 const CartContainer = () => {
 
-
-
-  
   return (
-    <div> 1
-      <a className="nav-link" href="#" > <img src={cart} alt="" /></a>
+    <div> 
+        <Link className="nav-link" to="/carrito"> <img src={cart} alt="" /> Carrito </Link>
     </div>
   )
 }

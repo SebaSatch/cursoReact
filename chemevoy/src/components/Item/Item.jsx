@@ -15,6 +15,7 @@ const Item = (props) => {
                             <h5 className="card-title">{props.nombre}</h5>
                             <p className="card-text"> Dias: {props.dias}</p>
                             <p className="card-text"><big className="text-muted"> ${props.precio}</big></p>
+                            {/* Este boton me va a llevar a la ruta asignada al link en App, en este caso, el valor que esta despues del detail, esta dado por el id del item  */}
                             <Link to={`/detail/${props.id}`}>
                                 <button type="button" className="btn btn-primary">Detalle</button>
                             </Link>

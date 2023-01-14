@@ -19,10 +19,10 @@ const NavBar = () => {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                     <li className="nav-item">
-                       <Link className="nav-link" to="/" href="#"> Todos los Id </Link>
+                       <Link className="nav-link" to="/" href="#"> Destinos </Link>
                     </li>
                     <li className="nav-item">
-                         <NavLink className="nav-link" to="/categoria/:id" href="#"> Argentina </NavLink>
+                         <NavLink className="nav-link" to="/categoria/:id" href="#"> Only Peronia </NavLink>
                     </li>
                     {/* <li className="nav-item">
                             <a className="nav-link" href="#">Quienes somos?</a>

@@ -11,11 +11,13 @@ const ItemList = () => {
         <>
             {prod.map((i)=> (
                 <Item 
+                    // agregamos siempre una key con un id unico por objeto, sino la consola tira advertencia
                     key={i.id}
                     nombre={i.destino}
                     descripcion={i.descripcion}
                     precio={i.precio}
-                    id={i.categoryId}
+                    // el id de aca abajo, es el que se va a usar como referencia en el componente Item, y que va a ser enviado a traves del useParams
+                    id={i.id}
                     imagen={i.img}  
                     dias={i.dias}  
                 />

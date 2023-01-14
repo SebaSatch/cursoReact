@@ -17,6 +17,7 @@ const ItemListContainer = () => {
              if (id) {
                 const queryFilter = query(queryCollection, where ('pais', '==' , 'Argentina'))
                 getDocs(queryFilter)
+                // IMPORTANTE mandar el ID adentro del objeto, pq en la colección de firebase, por defecto el ID esta afuera, hay q incorporarlo de la siguiente manera--->
                 .then(info => setProd(info.docs.map((pepe)=>({id:pepe.id, ...pepe.data()}))))
                 setCargando(false)  
 
