@@ -1,12 +1,16 @@
 import React from 'react'
-import { useContext } from 'react'
+import { useContext,useState } from 'react'
+import { Link } from 'react-router-dom'
 import { CartContext } from '../../context/CartContext'
 import ItemCount from '../ItemCount/ItemCount'
 
 const ItemDetail = ({finder}) => {
+    const [isInCart, setIsInCart] = useState(false)
     const {cartList, addToCart} = useContext(CartContext)
+
     const onAdd = (cant) => {
         addToCart({...finder, cant})
+        setIsInCart(true)
     }
 
     console.log(cartList)
@@ -24,12 +28,25 @@ const ItemDetail = ({finder}) => {
                         <p className="card-text">{finder.descripcion}</p>
                         <p className="card-text"><small className="text-muted">{finder.precio}</small></p>
                     </div>
-                <ItemCount
-
-                    onAdd={onAdd}
-                    stock={11}
-                    initial={1}
-                ></ItemCount>
+                {
+                    isInCart ?
+                        <>
+                            <Link to="/carrito">
+                                <button>Ir al carrito </button>    
+                            </Link>
+                            <Link to="/">
+                                <button>Seguir comprando</button>    
+                            </Link>
+                        </>
+                    :
+                        <>
+                            <ItemCount
+                                onAdd={onAdd}
+                                stock={11}
+                                initial={1}
+                            ></ItemCount>
+                         </>
+                }
                 </div>
             </div>
         </div>

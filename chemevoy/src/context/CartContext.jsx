@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, useContext } from "react";
+import { createContext, useState} from "react";
 
 export const CartContext = createContext([]);
 
@@ -32,6 +32,13 @@ export const CartContextProvider = ({children}) => {
 
         const precioTotal = () => cartList.reduce((contador, iterador) => contador += (iterador.precio * iterador.cant) , 0 )
 
+        const cantidadTotal = () => cartList.reduce((contador, iterador) => contador += (iterador.cant) , 0 )
+
+        const eliminarItem = (id) => {
+            setCartList(cartList.filter((iterador) => iterador.id !== id))
+        }
+
+
         precioTotal()
 
         console.log(precioTotal())
@@ -40,8 +47,15 @@ export const CartContextProvider = ({children}) => {
 
 
     return(
-        <CartContext.Provider value={
-            {cartList, addToCart, deleteCarrito, precioTotal, precioPaquete}
+        <CartContext.Provider value={ // en la lista siempre se ponen las funciones abajo y los estados arriba
+            {   cartList, 
+                addToCart, 
+                deleteCarrito, 
+                precioTotal, 
+                precioPaquete,
+                cantidadTotal,
+                eliminarItem
+            }
          }>
             {children}
         </CartContext.Provider>
