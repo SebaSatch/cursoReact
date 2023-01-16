@@ -1,10 +1,41 @@
+import { addDoc, collection, getFirestore } from 'firebase/firestore'
 import React from 'react'
+import { useState } from 'react'
 import { useContext } from 'react'
 import { CartContext } from '../../context/CartContext'
 
 const RealCartContainer = () => {
+    const [dataForm, setFormData] = useState({
+        name:'',
+        email:'',
+        phone:''
+    })
     const {cartList, deleteCarrito, precioTotal, precioPaquete, eliminarItem} = useContext(CartContext)
 
+            const agregarOrden = (e) => {
+                e.prevent.Default() 
+                const order ={}
+                order.buyer = dataForm
+                order.price = precioTotal()
+                order.items = cartList.map(({id, price, name}) => ({id, price, name}))
+
+                const db = getFirestore()
+                const queryCollection = collection(db,'orders')
+
+                addDoc(queryCollection, order)
+                .then(resp => console.log(resp))
+                .catch(err => console.log(err))
+                .finally(()=>deleteCarrito())
+            }    
+
+            const handleOnChange = (e) => {
+                setFormData({
+                    ...dataForm,
+                    [e.target.name]:e.target.value
+                })
+            }
+        
+            console.log(dataForm)
     return (  
         <>    
             {cartList.length !== 0 ? 
@@ -38,6 +69,14 @@ const RealCartContainer = () => {
                                 ))
                         }
                         <h2> PRECIO TOTAL = {precioTotal()} </h2>
+                        
+                        <form onSubmit={agregarOrden}>
+                            <input type="text" onChange={handleOnChange} name='name' placeholder='Ingrese el nombre' value={dataForm.name}/>
+                            <input type="text" onChange={handleOnChange}  name='phone' placeholder='Ingrese su telefono' value={dataForm.phone} />
+                            <input type="text" onChange={handleOnChange}  name='email'  placeholder='Ingrese su email' value={dataForm.email}/>
+                            <button> Terminar compra </button>
+                        </form>
+                        
                     </>  
                 : 
                     <>
@@ -45,7 +84,7 @@ const RealCartContainer = () => {
                     </>
   
             }     
-        </>    
+        </>  
     )
 }
 

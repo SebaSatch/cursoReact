@@ -42,7 +42,7 @@ const ItemDetail = ({finder}) => {
                         <>
                             <ItemCount
                                 onAdd={onAdd}
-                                stock={11}
+                                stock={finder.stock}
                                 initial={1}
                             ></ItemCount>
                          </>
