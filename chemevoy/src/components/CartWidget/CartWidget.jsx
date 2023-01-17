@@ -4,7 +4,7 @@ import { CartContext } from '../../context/CartContext'
 import cart from "../../assets/carticon.svg"
 import { Link } from 'react-router-dom'
 
-const CartContainer = () => {
+const CartWidget = () => {
   const {cantidadTotal} = useContext(CartContext)
   return (
     <div> 
@@ -13,4 +13,4 @@ const CartContainer = () => {
   )
 }
 
-export default CartContainer
+export default CartWidget

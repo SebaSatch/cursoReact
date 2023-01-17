@@ -3,8 +3,6 @@ import Item from '../Item/Item'
 import {useContext} from 'react'
 import { Contexto } from '../ItemListContainer/ItemListContainer'
 
-
-
 const ItemList = () => {
   const {prod} = useContext(Contexto)
   return (
@@ -21,8 +19,7 @@ const ItemList = () => {
                     imagen={i.img}  
                     dias={i.dias}  
                 />
-              )) 
-                               
+              ))                   
             }        
         </>                
 

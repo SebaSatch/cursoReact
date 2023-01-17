@@ -13,7 +13,7 @@ const ItemDetail = ({finder}) => {
         setIsInCart(true)
     }
 
-    console.log(cartList)
+    (cartList)
   return (      
 
     <>

@@ -1,15 +1,13 @@
-import {useEffect, useState, useContext} from 'react';
+import {useEffect, useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useParams } from 'react-router-dom';
 import ItemDetail from '../ItemDetail/ItemDetail';
-import {getFirestore, getDoc, doc, query, where } from 'firebase/firestore'
-// import { ProdListContext } from '../../context/ProdListContext';
+import {getFirestore, getDoc, doc } from 'firebase/firestore'
 
 
 const ItemDetailContainer = () => {
     const [finder, setFinder] = useState({})
     const {id} = useParams()
-    // const queryCollection = useContext(ProdListContext)
 
     useEffect(() =>{
         const db = getFirestore()
@@ -19,13 +17,10 @@ const ItemDetailContainer = () => {
         .catch(err=> console.log(err))
     }, [])
 
-
 return (
-
             <ItemDetail finder={finder}></ItemDetail>
                
     )
 }
-
 
 export default ItemDetailContainer

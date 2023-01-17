@@ -1,16 +1,17 @@
 import { addDoc, collection, getFirestore } from 'firebase/firestore'
 import React from 'react'
-import { useState } from 'react'
-import { useContext } from 'react'
+import { useState, useContext } from 'react'
 import { CartContext } from '../../context/CartContext'
+import { Link } from 'react-router-dom'
 
-const RealCartContainer = () => {
+const CartContainer = () => {
     const [dataForm, setFormData] = useState({
         name:'',
         phone:'',
-        email:'' })
+        email:'',
+        email2:'' })
 
-    const {cartList, deleteCarrito, precioTotal, precioPaquete, eliminarItem} = useContext(CartContext)
+    const {cartList, deleteCarrito, precioTotal, eliminarItem} = useContext(CartContext)
 
             const agregarOrden = (e) => {
                 e.preventDefault() 
@@ -18,8 +19,7 @@ const RealCartContainer = () => {
                 order.buyer = dataForm
                 order.precio = precioTotal()
                 order.items = cartList.map((objeto) => ({id: objeto.id, precio:objeto.precio, nombre: objeto.destino}))
-
-                console.log(order)
+                
 
                 const db = getFirestore()
                 const queryCollection = collection(db,'orders')
@@ -27,7 +27,7 @@ const RealCartContainer = () => {
                 addDoc(queryCollection, order)
                 .then(resp => console.log(resp))
                 .catch(err => console.log(err))
-                // .finally(()=>deleteCarrito())
+                .finally(()=>deleteCarrito())
             }    
 
             const handleOnChange = (e) => {
@@ -37,7 +37,7 @@ const RealCartContainer = () => {
                 })
             }
         
-            console.log(dataForm)
+            
     return (  
         <>    
             {cartList.length !== 0 ? 
@@ -59,7 +59,7 @@ const RealCartContainer = () => {
                                                         Total paquete para {iterador.cant} persona/s por ${(iterador.cant)*(iterador.precio)}
                                                     </big>
                                                 </p>
-                                             <button onClick ={()=> eliminarItem(iterador.id)}> Eliminar Item </button>   
+                                             <button className="btn btn-danger" onClick ={()=> eliminarItem(iterador.id)}> Eliminar Item </button>   
                                             </div>
                                         </div>
                                     </div>
@@ -72,12 +72,16 @@ const RealCartContainer = () => {
                         <form onSubmit={agregarOrden}>
                             <input type="text" onChange={handleOnChange} name='name' placeholder='Ingrese el nombre' value={dataForm.name}/>
                             <input type="text" onChange={handleOnChange}  name='phone' placeholder='Ingrese su telefono' value={dataForm.phone} />
-                            <input type="text" onChange={handleOnChange}  name='email'  placeholder='Ingrese su email' value={dataForm.email}/>
-                            <button> Terminar compra </button>
+                            <input type="text" onChange={handleOnChange}  name='email'  placeholder='Ingrese su mail' value={dataForm.email}/>
+                            <input type="text" onChange={handleOnChange}  name='email'  placeholder='Ingrese su mail de nuevo' value={dataForm.email2}/>
+                            <button className="btn btn-success"> Terminar compra </button>
+                            <Link to="/">
+                                <button className="btn btn-outline-primary">Seguir comprando</button>    
+                            </Link>
                         </form>
 
                         <br/>
-                        <button onClick={deleteCarrito}> VACIAR CARRITO BRO </button>
+                        <button className="btn btn-outline-danger" onClick={()=> deleteCarrito()}> VACIAR CARRITO BRO </button>
                         <br/>
                         <br />
                         
@@ -92,4 +96,4 @@ const RealCartContainer = () => {
     )
 }
 
-export default RealCartContainer
+export default CartContainer

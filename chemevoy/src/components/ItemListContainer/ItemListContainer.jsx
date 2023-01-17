@@ -32,7 +32,7 @@ const ItemListContainer = () => {
 
         },[id])
 
-        console.log(prod)
+        
 
   return (
     <>  

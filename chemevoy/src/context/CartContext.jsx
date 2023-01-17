@@ -39,13 +39,6 @@ export const CartContextProvider = ({children}) => {
         }
 
 
-        precioTotal()
-
-        console.log(precioTotal())
-
-
-
-
     return(
         <CartContext.Provider value={ // en la lista siempre se ponen las funciones abajo y los estados arriba
             {   cartList, 

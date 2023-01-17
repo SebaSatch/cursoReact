@@ -14,6 +14,7 @@ const ItemCount = ({stock, initial=1, onAdd}) => {
     }
     const handleOnAdd = () => {
         onAdd(count)
+        
     }
   
   return (

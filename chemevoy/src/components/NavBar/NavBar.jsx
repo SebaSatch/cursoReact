@@ -1,9 +1,7 @@
 import logo from "../../assets/logo2-svg.svg"
-import CartContainer from "../CartWidget/CartContainer"
+import CartWidget from "../CartWidget/CartWidget"
 import { Link } from "react-router-dom"
 import { NavLink } from "react-router-dom"
-
-
 
 const NavBar = () => {
   return (
@@ -24,28 +22,9 @@ const NavBar = () => {
                     <li className="nav-item">
                          <NavLink className="nav-link" to="/categoria/:id" href="#"> Only Peronia </NavLink>
                     </li>
-                    {/* <li className="nav-item">
-                            <a className="nav-link" href="#">Quienes somos?</a>
-                    </li>
                     <li className="nav-item">
-                            <a className="nav-link" href="#">Contacto</a>
-                    </li> */}
-                    <li className="nav-item">
-                            <CartContainer></CartContainer>
+                            <CartWidget></CartWidget>
                     </li>
-                    
-
-                    {/* <li className="nav-item dropdown">
-                         <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Dropdown
-                    </a>
-                    <ul className="dropdown-menu">
-                        <li><a className="dropdown-item" href="#">Action</a></li>
-                        <li><a className="dropdown-item" href="#">Another action</a></li>
-                        <li><hr className="dropdown-divider"/></li>
-                        <li><a className="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                    </li> */}
                 </ul>   
                 </div>
             </div>
