@@ -3,8 +3,6 @@ import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from './components/NavBar/NavBar';
 import ItemListContainer from './components/ItemListContainer/ItemListContainer';
-import Item from './components/Item/Item';
-import ItemList from './components/ItemList/ItemList';
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
 import { ProdListContextProvider } from './context/ProdListContext';
 import { CartContextProvider } from './context/CartContext';

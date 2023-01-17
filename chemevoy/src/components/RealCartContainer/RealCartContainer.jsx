@@ -7,17 +7,19 @@ import { CartContext } from '../../context/CartContext'
 const RealCartContainer = () => {
     const [dataForm, setFormData] = useState({
         name:'',
-        email:'',
-        phone:''
-    })
+        phone:'',
+        email:'' })
+
     const {cartList, deleteCarrito, precioTotal, precioPaquete, eliminarItem} = useContext(CartContext)
 
             const agregarOrden = (e) => {
-                e.prevent.Default() 
+                e.preventDefault() 
                 const order ={}
                 order.buyer = dataForm
-                order.price = precioTotal()
-                order.items = cartList.map(({id, price, name}) => ({id, price, name}))
+                order.precio = precioTotal()
+                order.items = cartList.map((objeto) => ({id: objeto.id, precio:objeto.precio, nombre: objeto.destino}))
+
+                console.log(order)
 
                 const db = getFirestore()
                 const queryCollection = collection(db,'orders')
@@ -25,13 +27,13 @@ const RealCartContainer = () => {
                 addDoc(queryCollection, order)
                 .then(resp => console.log(resp))
                 .catch(err => console.log(err))
-                .finally(()=>deleteCarrito())
+                // .finally(()=>deleteCarrito())
             }    
 
             const handleOnChange = (e) => {
                 setFormData({
                     ...dataForm,
-                    [e.target.name]:e.target.value
+                    [e.target.name]: e.target.value
                 })
             }
         
@@ -40,11 +42,7 @@ const RealCartContainer = () => {
         <>    
             {cartList.length !== 0 ? 
                     <>
-                        <br/>
-                        <button onClick={()=> deleteCarrito()}> VACIAR CARRITO BRO </button>
-                        <br/>
-                        <br />
-
+                
                         {cartList.map((iterador) =>  
                                 (
                                 <div key={iterador.id} className="card mb-3">
@@ -68,14 +66,20 @@ const RealCartContainer = () => {
                                 </div>
                                 ))
                         }
+
                         <h2> PRECIO TOTAL = {precioTotal()} </h2>
-                        
+
                         <form onSubmit={agregarOrden}>
                             <input type="text" onChange={handleOnChange} name='name' placeholder='Ingrese el nombre' value={dataForm.name}/>
                             <input type="text" onChange={handleOnChange}  name='phone' placeholder='Ingrese su telefono' value={dataForm.phone} />
                             <input type="text" onChange={handleOnChange}  name='email'  placeholder='Ingrese su email' value={dataForm.email}/>
                             <button> Terminar compra </button>
                         </form>
+
+                        <br/>
+                        <button onClick={deleteCarrito}> VACIAR CARRITO BRO </button>
+                        <br/>
+                        <br />
                         
                     </>  
                 : 
