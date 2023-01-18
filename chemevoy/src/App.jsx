@@ -8,8 +8,6 @@ import { ProdListContextProvider } from './context/ProdListContext';
 import { CartContextProvider } from './context/CartContext';
 import CartContainer from './components/CartContainer/CartContainer';
 
-
-
 function App() {
 
 
