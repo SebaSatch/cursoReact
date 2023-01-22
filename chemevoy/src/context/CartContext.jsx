@@ -21,20 +21,20 @@ export const CartContextProvider = ({children}) => {
           
         }
         
-        const deleteCarrito = () => {
+        const deleteCart = () => {
             setCartList([])
         }
 
 
         // aca abajo, usamos el reduce para tomar las key q nos interesan de los objetos de nuestro carrito (el valor y la cantidad), y que nos devuelva un valor, el cual en este caso se va a inicializar le indicamos q inicialice en cero.
 
-        const precioPaquete = () => cartList.reduce((contador, iterador) => contador = (iterador.precio * iterador.cant) , 0 )
+        const packagePrice = () => cartList.reduce((contador, iterador) => contador = (iterador.precio * iterador.cant) , 0 )
 
-        const precioTotal = () => cartList.reduce((contador, iterador) => contador += (iterador.precio * iterador.cant) , 0 )
+        const totalPrice = () => cartList.reduce((contador, iterador) => contador += (iterador.precio * iterador.cant) , 0 )
 
-        const cantidadTotal = () => cartList.reduce((contador, iterador) => contador += (iterador.cant) , 0 )
+        const totalAmount = () => cartList.reduce((contador, iterador) => contador += (iterador.cant) , 0 )
 
-        const eliminarItem = (id) => {
+        const eraseItem = (id) => {
             setCartList(cartList.filter((iterador) => iterador.id !== id))
         }
 
@@ -43,11 +43,11 @@ export const CartContextProvider = ({children}) => {
         <CartContext.Provider value={ // en la lista siempre se ponen las funciones abajo y los estados arriba
             {   cartList, 
                 addToCart, 
-                deleteCarrito, 
-                precioTotal, 
-                precioPaquete,
-                cantidadTotal,
-                eliminarItem
+                deleteCart, 
+                totalPrice, 
+                packagePrice,
+                totalAmount,
+                eraseItem
             }
          }>
             {children}

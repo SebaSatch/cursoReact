@@ -5,10 +5,10 @@ import cart from "../../assets/carticon.svg"
 import { Link } from 'react-router-dom'
 
 const CartWidget = () => {
-  const {cantidadTotal} = useContext(CartContext)
+  const {totalAmount} = useContext(CartContext)
   return (
     <div> 
-        <Link className="nav-link" to="/carrito"> <img src={cart} alt=""/> Carrito  {cantidadTotal() !== 0 && cantidadTotal()} </Link>
+        <Link className="nav-link" to="/carrito"> <img src={cart} alt=""/> Carrito  {totalAmount() !== 0 && totalAmount()} </Link>
     </div>
   )
 }
