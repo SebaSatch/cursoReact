@@ -1,4 +1,4 @@
-import { addDoc, collection, getFirestore } from 'firebase/firestore'
+import { query,  addDoc, collection, getDoc, getFirestore } from 'firebase/firestore'
 import React from 'react'
 import { useState, useContext } from 'react'
 import { CartContext } from '../../context/CartContext'
@@ -11,23 +11,32 @@ const CartContainer = () => {
         email:'',
         email2:'' })
 
+        const [respu, setRespu] = useState()
+    
+
     const {cartList, deleteCart, totalPrice, eraseItem} = useContext(CartContext)
 
             const addOrder = (e) => {
+                
+                
                 e.preventDefault() 
                 const order ={}
                 order.buyer = dataForm
                 order.price = totalPrice()
                 order.items = cartList.map((objeto) => ({id: objeto.id, price:objeto.precio, nombre: objeto.destino}))
                 
+                console.log(order)
 
                 const db = getFirestore()
                 const queryCollection = collection(db,'orders')
 
                 addDoc(queryCollection, order)
-                .then(resp => console.log(resp))
+                .then(resp => console.log(resp.id))
+                .then(resp => setRespu(resp.id))
                 .catch(err => console.log(err))
                 .finally(()=>deleteCart())
+
+                
             }    
 
             const handleOnChange = (e) => {
@@ -74,7 +83,13 @@ const CartContainer = () => {
                             <input type="text" onChange={handleOnChange}  name='phone' placeholder='Ingrese su telefono' value={dataForm.phone} />
                             <input type="text" onChange={handleOnChange}  name='email'  placeholder='Ingrese su mail' value={dataForm.email}/>
                             <input type="text" onChange={handleOnChange}  name='email2'  placeholder='Ingrese su mail de nuevo' value={dataForm.email2}/>
+
                             <button className="btn btn-success"> Terminar compra </button>
+                            
+
+
+
+
                             <Link to="/">
                                 <button className="btn btn-outline-primary">Seguir comprando</button>    
                             </Link>
@@ -85,10 +100,29 @@ const CartContainer = () => {
                         <br/>
                         <br />
                         
+
+
+
+
+
+
+
+
                     </>  
+
+
+
                 : 
                     <>
                         <h2> El carrito esta vacio Pa' </h2>
+                        
+
+                       
+                        <Link to="/">
+                                <button className="btn btn-outline-primary"> Vamo' a compra'</button>    
+                        </Link>
+
+                        
                     </>
   
             }     
