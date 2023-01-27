@@ -2,7 +2,7 @@ import { query,  addDoc, collection, getDoc, getFirestore } from 'firebase/fires
 import React from 'react'
 import { useState, useContext } from 'react'
 import { CartContext } from '../../context/CartContext'
-import { Link } from 'react-router-dom'
+import { Link, parsePath } from 'react-router-dom'
 
 const CartContainer = () => {
     const [dataForm, setFormData] = useState({
@@ -11,13 +11,12 @@ const CartContainer = () => {
         email:'',
         email2:'' })
 
-        const [respu, setRespu] = useState()
-    
+        
+        const [respu, setRespu] = useState('')
 
     const {cartList, deleteCart, totalPrice, eraseItem} = useContext(CartContext)
 
             const addOrder = (e) => {
-                
                 
                 e.preventDefault() 
                 const order ={}
@@ -25,18 +24,22 @@ const CartContainer = () => {
                 order.price = totalPrice()
                 order.items = cartList.map((objeto) => ({id: objeto.id, price:objeto.precio, nombre: objeto.destino}))
                 
-                console.log(order)
+                if ((order.buyer.email !== order.buyer.email2) || (order.buyer.name.length == 0) || (order.buyer.phone.length == 0 )){
+                    alert('cargue bien los datos señor!')
 
-                const db = getFirestore()
-                const queryCollection = collection(db,'orders')
+                }else { 
+                    const db = getFirestore()
+                    const queryCollection = collection(db,'orders')
 
-                addDoc(queryCollection, order)
-                .then(resp => console.log(resp.id))
-                .then(resp => setRespu(resp.id))
-                .catch(err => console.log(err))
-                .finally(()=>deleteCart())
+                    function papa (order){
+                        setRespu(`Sr. ${dataForm.name} Gracias por su compra, su numero de orden es el ${order.id}`)  
+                    }
 
-                
+                    addDoc(queryCollection, order)
+                    .then(order =>{papa(order)})
+                    .finally(()=>deleteCart())
+
+                }
             }    
 
             const handleOnChange = (e) => {
@@ -100,23 +103,18 @@ const CartContainer = () => {
                         <br/>
                         <br />
                         
-
-
-
-
-
-
-
-
                     </>  
-
-
 
                 : 
                     <>
                         <h2> El carrito esta vacio Pa' </h2>
-                        
+                        <br />
 
+                        <div className="alert alert-success" role="alert">
+                            <p><big><strong>{respu}</strong></big></p>
+                        </div>
+                        
+                        < br />
                        
                         <Link to="/">
                                 <button className="btn btn-outline-primary"> Vamo' a compra'</button>    
